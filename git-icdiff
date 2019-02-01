@@ -1,6 +1,10 @@
 #!/bin/sh
-GITPAGER=$(git config --get core.pager)
+GITPAGER=$(git config --get icdiff.pager)
 ICDIFF_OPTIONS=$(git config --get icdiff.options)
+
+if [ -z "$GITPAGER" ]; then
+    GITPAGER=$(git config --get core.pager)
+fi
 
 if [ -z "$GITPAGER" ]; then
   GITPAGER="$PAGER"
